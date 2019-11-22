@@ -1,0 +1,54 @@
+[data paths]
+path_project = ./
+
+train_imgs_original = training/images/
+train_groundTruth =  training/masks/
+train_log = logs/
+test_imgs_original = testing/images/
+test_groundTruth =  testing/masks/
+
+path_model = models/
+mean_image = mean_image.npy
+
+
+[experiment name]
+name = AT100_slidenet
+network = slidenet2
+
+
+[data attributes]
+#Dimensions of the patches extracted from the full images
+patch_height = 204
+patch_width = 204
+mask_height = 200
+mask_width = 200
+num_channels = 3
+num_classes = 2
+
+
+[training settings]
+#number of total patches:
+N_subimgs = 190000
+#if patches are extracted only inside the field of view:
+inside_FOV = False
+#Number of training epochs
+N_epochs = 100
+batch_size = 32
+#if running with nohup
+nohup = True
+
+
+[testing settings]
+#Choose the model to test: best==epoch with min loss, last==last epoch
+best_last = best
+#number of full images for the test (max 20)
+full_images_to_test = 2
+#How many original-groundTruth-prediction images are visualized in each image
+N_group_visual = 1
+#Compute average in the prediction, improve results but require more patches to be predicted
+average_mode = True
+#Only if average_mode==True. Stride for patch extraction, lower value require more patches to be predicted
+stride_height = 90
+stride_width = 90
+#if running with nohup
+nohup = False
